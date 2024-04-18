@@ -23,7 +23,7 @@ def menu():
         elif user_choice == '6':
             print('В разработке')
         elif user_choice == '7':
-            print('В разработке')
+            get_full_contact(phonebook)
         elif user_choice == '8':
             print('До свидания!')
             exit()
@@ -43,6 +43,15 @@ def add_contact():
         file.write(line + '\n')
         print(f'Контакт {data[0]} {data[1]} {data[2]} добавлен!') 
     return
+
+# Просмотр всех контактов
+def get_full_contact(phonebook):
+    with open(phonebook, 'r', encoding='utf-8') as phonebook:
+        data = phonebook.readlines()
+    headers = ['Фамилия', 'Имя', 'Отчество', 'Номер телефона']
+    print('\t\t'.join(headers))
+    for line in data:
+        print('\t\t'.join(line.split(' ')))
             
 phonebook = 'phonebook.txt' 
 menu()
